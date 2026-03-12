@@ -60,29 +60,52 @@ export default function StudentDetail() {
 
   if (!student) {
     return (
-      <Box p={3}>
-        <Typography>Schüler nicht gefunden.</Typography>
-        <Button startIcon={<ArrowBackIcon />} onClick={() => navigate("/")}>
-          Zurück
-        </Button>
+      <Box
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          py: 6,
+          px: 2,
+          bgcolor: "grey.50",
+        }}
+      >
+        <Box sx={{ width: "100%", maxWidth: 700 }}>
+          <Typography mb={2}>Schüler nicht gefunden.</Typography>
+          <Button startIcon={<ArrowBackIcon />} onClick={() => navigate("/")}>
+            Zurück
+          </Button>
+        </Box>
       </Box>
     );
   }
 
   return (
-    <Box p={3} maxWidth={600}>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        py: 6,
+        px: 2,
+        bgcolor: "grey.50",
+      }}
+    >
+      <Box sx={{ width: "100%", maxWidth: 700 }}>
       <Button
         startIcon={<ArrowBackIcon />}
         onClick={() => navigate("/")}
-        sx={{ mb: 2 }}
+        sx={{ mb: 3 }}
       >
         Zurück
       </Button>
 
-      <Paper sx={{ p: 3 }}>
-        <Stack spacing={2}>
+      <Paper elevation={2} sx={{ p: 4 }}>
+        <Stack spacing={3}>
           <Stack direction="row" justifyContent="space-between" alignItems="center">
-            <Typography variant="h5">Detailansicht</Typography>
+            <Typography variant="h5" fontWeight={600}>Detailansicht</Typography>
             <Chip
               label={student.status}
               color={statusColor[student.status]}
@@ -126,24 +149,25 @@ export default function StudentDetail() {
           ) : (
             <>
               <Box>
-                <Typography variant="caption" color="text.secondary">Name</Typography>
-                <Typography variant="body1">{student.name}</Typography>
+                <Typography variant="caption" color="text.secondary" display="block" mb={0.5}>Name</Typography>
+                <Typography variant="body1" fontWeight={500}>{student.name}</Typography>
               </Box>
               <Box>
-                <Typography variant="caption" color="text.secondary">Förderungsbedarf</Typography>
-                <Typography variant="body1">{student.foerderungsbedarf}</Typography>
+                <Typography variant="caption" color="text.secondary" display="block" mb={0.5}>Förderungsbedarf</Typography>
+                <Typography variant="body1" fontWeight={500}>{student.foerderungsbedarf}</Typography>
               </Box>
               <Box>
-                <Typography variant="caption" color="text.secondary">ID</Typography>
+                <Typography variant="caption" color="text.secondary" display="block" mb={0.5}>ID</Typography>
                 <Typography variant="body2" color="text.secondary">{student.id}</Typography>
               </Box>
-              <Button variant="outlined" onClick={() => setEdit(true)}>
+              <Button variant="outlined" onClick={() => setEdit(true)} sx={{ mt: 1, alignSelf: "flex-start" }}>
                 Bearbeiten
               </Button>
             </>
           )}
         </Stack>
       </Paper>
+      </Box>
     </Box>
   );
 }

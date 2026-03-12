@@ -67,9 +67,20 @@ export default function StudentList() {
   }
 
   return (
-    <Box p={3}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center" mb={2}>
-        <Typography variant="h5">Schüler – Förderungsbedarf</Typography>
+    <Box
+      sx={{
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        py: 6,
+        px: 2,
+        bgcolor: "grey.50",
+      }}
+    >
+      <Box sx={{ width: "100%", maxWidth: 800 }}>
+      <Stack direction="row" justifyContent="space-between" alignItems="center" mb={3}>
+        <Typography variant="h5" fontWeight={600}>Schüler – Förderungsbedarf</Typography>
         <Button
           variant="contained"
           startIcon={<AddIcon />}
@@ -79,14 +90,14 @@ export default function StudentList() {
         </Button>
       </Stack>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} elevation={2}>
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell><strong>Name</strong></TableCell>
-              <TableCell><strong>Förderungsbedarf</strong></TableCell>
-              <TableCell><strong>Status</strong></TableCell>
-              <TableCell align="right"></TableCell>
+            <TableRow sx={{ bgcolor: "grey.100" }}>
+              <TableCell sx={{ py: 2 }}><strong>Name</strong></TableCell>
+              <TableCell sx={{ py: 2 }}><strong>Förderungsbedarf</strong></TableCell>
+              <TableCell sx={{ py: 2 }}><strong>Status</strong></TableCell>
+              <TableCell align="right" sx={{ py: 2 }}></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -97,12 +108,12 @@ export default function StudentList() {
                 sx={{ cursor: "pointer" }}
                 onClick={() => navigate(`/students/${s.id}`)}
               >
-                <TableCell>{s.name}</TableCell>
-                <TableCell>{s.foerderungsbedarf}</TableCell>
-                <TableCell>
+                <TableCell sx={{ py: 2 }}>{s.name}</TableCell>
+                <TableCell sx={{ py: 2 }}>{s.foerderungsbedarf}</TableCell>
+                <TableCell sx={{ py: 2 }}>
                   <Chip label={s.status} color={statusColor[s.status]} size="small" />
                 </TableCell>
-                <TableCell align="right">
+                <TableCell align="right" sx={{ py: 2 }}>
                   <Tooltip title="Löschen">
                     <IconButton
                       size="small"
@@ -117,6 +128,7 @@ export default function StudentList() {
           </TableBody>
         </Table>
       </TableContainer>
+      </Box>
 
       {/* Add dialog */}
       <Dialog open={open} onClose={() => setOpen(false)} fullWidth maxWidth="sm">
@@ -159,3 +171,4 @@ export default function StudentList() {
     </Box>
   );
 }
+
